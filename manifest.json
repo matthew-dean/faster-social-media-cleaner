@@ -1,0 +1,32 @@
+{
+  "name": "Faster Social Media Cleaner",
+  "version": "0.1",
+  "description": "Wipe old Facebook data!",
+  "permissions": [
+    "tabs", 
+    "declarativeContent", 
+    "storage",
+    "https://*.facebook.com/"
+  ],
+  "background": {
+    "scripts": ["main.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/*"],
+      "js": ["fb/social-media.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://m.facebook.com/*/allactivity*"],
+      "js": ["fb/activity-log.js"],
+      "css": ["fb/activity-log.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "manifest_version": 2
+}
